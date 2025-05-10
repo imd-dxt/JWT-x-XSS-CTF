@@ -1,0 +1,163 @@
+:root {
+    --dark-grey: #000000;
+    --medium-grey: #000000;
+    --light-grey: #242424;
+    --accent-grey: #4f4f4f;
+    --text-grey: #c4c4c4;
+    --text-light: #e0e0e0;
+    --highlight: #007bff;
+}
+
+body {
+    background-color: var(--dark-grey);
+    color: var(--text-grey);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    background-color: var(--medium-grey);
+    border-bottom: 1px solid var(--accent-grey);
+}
+
+.sidebar {
+    background-color: var(--medium-grey);
+    height: calc(100vh - 56px);
+    position: fixed;
+    padding-top: 15px;
+    width: 250px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.sidebar-link {
+    color: var(--text-grey);
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    background-color: var(--light-grey);
+    color: var(--text-light);
+    border-left: 4px solid var(--highlight);
+}
+
+.sidebar-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.card {
+    background-color: var(--medium-grey);
+    border: 1px solid var(--accent-grey);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: var(--light-grey);
+    color: var(--text-light);
+    border-bottom: 1px solid var(--accent-grey);
+}
+
+.table {
+    color: var(--text-grey);
+}
+
+.table thead th {
+    border-bottom-color: var(--accent-grey);
+    color: var(--text-light);
+}
+
+.table td, .table th {
+    border-top-color: var(--accent-grey);
+}
+
+.message-box {
+    border: 1px solid var(--accent-grey);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.admin-message {
+    background-color: var(--light-grey);
+}
+
+.user-message {
+    background-color: var(--medium-grey);
+    border-left: 3px solid var(--highlight);
+}
+
+.alert-dark {
+    background-color: var(--light-grey);
+    color: var(--text-light);
+    border-color: var(--accent-grey);
+}
+
+.btn-dark {
+    background-color: var(--accent-grey);
+    border-color: var(--light-grey);
+}
+
+.progress {
+    background-color: var(--light-grey);
+}
+
+#messagesContainer {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dashboard-section,
+.reports-section,
+.messages-section,
+.settings-section {
+    display: none;
+}
+
+.active-section {
+    display: block;
+}
+
+.report-item {
+    background-color: var(--medium-grey);
+    border: 1px solid var(--accent-grey);
+    border-left: 3px solid var(--highlight);
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.profile-info {
+    background-color: var(--medium-grey);
+    border: 1px solid var(--accent-grey);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background-color: var(--light-grey);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin: 0 auto 20px;
+    color: var(--text-light);
+}
+
+.log-entry {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: var(--light-grey);
+}

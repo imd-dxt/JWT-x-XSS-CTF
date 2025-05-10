@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JWT Challenge - Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dash.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            <p>Loading user information...</p>
+        </div>
+        
+        <div id="admin-link" style="display: none;">
+            <p>You have admin privileges! <a href="/admin-panel/">Access Admin Panel</a></p>
+        </div>
+        
+        <div id="non-admin-message" style="display: none;">
+            <p>You need admin privileges to access the admin panel and submit a payload.</p>
+            <p>Hint: JWT tokens can sometimes be manipulated to change user roles...</p>
+        </div>
+        
+        <hr>
+        
+        <div class="info-box">
+            <h3>Challenge Progress</h3>
+            <p>You've successfully logged in. Next steps:</p>
+            <ol>
+                <li>Gain admin privileges</li>
+                <li>Access the admin panel</li>
+                <li>Upload the correct payload to get the flag</li>
+            </ol>
+        </div>
+        
+        <div class="logout-section">
+            <button id="logout-btn" class="btn">Logout</button>
+        </div>
+    </div>
+    
+    <script>
+        fetch('/api/profile/', {
+            method: 'GET',
+            credentials: 'include' 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Full response data:', data);  
+            
+       
+            const username = data.username || 'Unknown';
+            const userId = data.id !== undefined ? data.id : 'N/A';
+            const role = data.role || 'user';
+            document.getElementById('user-info').innerHTML = `
+                <h2>Welcome, ${username}!</h2>
+                <p>Your user ID: ${userId}</p>
+                <p>Your role: ${role}</p>
+            `;
+            console.log(data.role);
+            if (role === 'admin') {
+                document.getElementById('admin-link').style.display = 'block';
+            } else {
+                document.getElementById('non-admin-message').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            document.getElementById('user-info').innerHTML = `
+                <p class="error-message">Failed to load user information.</p>
+            `;
+        });
+        
+       
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            window.location.href = '/';
+        });
+        
+ 
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+    </script>
+</body>
+</html>

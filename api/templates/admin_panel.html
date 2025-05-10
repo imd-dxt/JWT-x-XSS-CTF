@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecOps Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt"></i> SecOps DASHBOARD
+            </a>
+            <div class="d-flex">
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> <span id="username">Admin</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#" id="profileLink"><i class="fas fa-user-cog"></i> Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="sidebar-link active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="#" class="sidebar-link" data-section="reports">
+            <i class="fas fa-file-alt"></i> Reports
+            <span class="badge bg-primary float-end">5</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="messages">
+            <i class="fas fa-comment-alt"></i> Messages
+            <span class="badge bg-danger float-end">3</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="settings">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="alert alert-dark" role="alert">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="alert-heading mb-1">Welcome, <span id="welcomeUsername">Admin</span>!</h4>
+                            <p class="mb-0">Role: <span id="userRole">admin</span> | Last login: Today at 08:23 AM</p>
+                        </div>
+                        <div>
+                            <span class="badge bg-success">SECURE CONNECTION</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="dashboard-section active-section">
+            <div class="row mb-4">
+                <!-- Security Overview -->
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-shield-alt"></i> Security Overview</h5>
+                            <button class="btn btn-sm btn-dark"><i class="fas fa-sync"></i> Refresh</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>System Status</h6>
+                                        <span class="badge bg-success">NORMAL</span>
+                                    </div>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Threat Level</h6>
+                                        <span class="badge bg-warning">MEDIUM</span>
+                                    </div>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Network Traffic</h6>
+                                        <span class="badge bg-info">ACTIVE</span>
+                                    </div>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive mt-3">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Event ID</th>
+                                            <th>Description</th>
+                                            <th>Source</th>
+                                            <th>Severity</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>SEC-7824</td>
+                                            <td>Failed login attempt</td>
+                                            <td>192.168.1.45</td>
+                                            <td><span class="badge bg-warning">Medium</span></td>
+                                            <td>08:14 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEC-7823</td>
+                                            <td>Firewall rule updated</td>
+                                            <td>admin</td>
+                                            <td><span class="badge bg-info">Low</span></td>
+                                            <td>Yesterday</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEC-7822</td>
+                                            <td>Suspicious file detected</td>
+                                            <td>endpoint-05</td>
+                                            <td><span class="badge bg-danger">High</span></td>
+                                            <td>Yesterday</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEC-7821</td>
+                                            <td>System updated successfully</td>
+                                            <td>server-01</td>
+                                            <td><span class="badge bg-success">Info</span></td>
+                                            <td>Yesterday</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Summary -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-chart-pie"></i> Activity Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Total Alerts</span>
+                                    <span>23</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 23%" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Resolved Issues</span>
+                                    <span>45</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>System Health</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h6>Active Users</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <i class="fas fa-circle text-success me-1"></i> admin
+                                    </div>
+                                    <span class="badge bg-secondary">Online</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <i class="fas fa-circle text-success me-1"></i> security_analyst
+                                    </div>
+                                    <span class="badge bg-secondary">Online</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="fas fa-circle text-secondary me-1"></i> network_admin
+                                    </div>
+                                    <span class="badge bg-secondary">Offline</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Monitoring -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-server"></i> Server Status</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Server</th>
+                                            <th>Status</th>
+                                            <th>CPU</th>
+                                            <th>Memory</th>
+                                            <th>Disk</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>web-01</td>
+                                            <td><span class="badge bg-success">Online</span></td>
+                                            <td>23%</td>
+                                            <td>42%</td>
+                                            <td>56%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>app-01</td>
+                                            <td><span class="badge bg-success">Online</span></td>
+                                            <td>45%</td>
+                                            <td>31%</td>
+                                            <td>27%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>db-01</td>
+                                            <td><span class="badge bg-success">Online</span></td>
+                                            <td>67%</td>
+                                            <td>78%</td>
+                                            <td>62%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>auth-01</td>
+                                            <td><span class="badge bg-warning">Degraded</span></td>
+                                            <td>89%</td>
+                                            <td>92%</td>
+                                            <td>45%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-shield-virus"></i> Recent Threats</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="log-entry">
+                                <strong>10:23 AM</strong> - Suspicious login attempt blocked from IP 203.45.67.89
+                            </div>
+                            <div class="log-entry">
+                                <strong>09:48 AM</strong> - Malware signature detected in uploaded file (quarantined)
+                            </div>
+                            <div class="log-entry">
+                                <strong>Yesterday 11:52 PM</strong> - Brute force attack attempt detected and blocked
+                            </div>
+                            <div class="log-entry">
+                                <strong>Yesterday 10:17 PM</strong> - Unusual data transfer pattern detected (monitored)
+                            </div>
+                            <div class="log-entry">
+                                <strong>Yesterday 08:45 PM</strong> - Intrusion detection alert on firewall (investigated)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Section -->
+        <div id="reportsSection" class="reports-section">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-file-alt"></i> Security Reports</h5>
+                            <div>
+                                <button class="btn btn-sm btn-dark me-2"><i class="fas fa-filter"></i> Filter</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="report-item">
+                                <h5>Monthly Security Assessment - May 2025</h5>
+                                <p class="text-muted">Generated on May 8, 2025 by Security Team</p>
+                                <p>This report provides a comprehensive assessment of the organization's security posture for the month of May 2025. Key findings include a 15% reduction in suspicious login attempts and successful implementation of the new two-factor authentication system.</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-sm btn-dark me-2"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                            
+                            <div class="report-item">
+                                <h5>Network Penetration Test Results</h5>
+                                <p class="text-muted">Generated on May 5, 2025 by External Security Consultant</p>
+                                <p>Results of the scheduled penetration testing conducted between April 28-30. Several vulnerabilities were identified with recommendations for remediation. Overall security rating: B+</p>
+                                <p>Among the findings was a minor JSON Web Token validation issue that requires attention. The authorization header implementation in the admin interface must be reviewed to prevent cross-site request forgery. Token expiration times should be reduced from the current 24 hours to a maximum of 2 hours as per security best practices.</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-sm btn-dark me-2"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                            
+                            <div class="report-item">
+                                <h5>Incident Response - Attempted Data Breach</h5>
+                                <p class="text-muted">Generated on April 28, 2025 by Incident Response Team</p>
+                                <p>Analysis of the attempted data breach that occurred on April 25, 2025. The attack vector was identified as a sophisticated spear-phishing campaign targeting executive leadership. All suspicious activities were contained with no data exfiltration confirmed.</p>
+                                <p style="color: var(--text-grey);">During incident analysis, we noted potential vulnerabilities in the internal communication system. This approach currently used could allow script injection if content is not properly sanitized. We recommend changing all instances and stay away from the displayed errors</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-sm btn-dark me-2"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                            
+                            <div class="report-item">
+                                <h5>Compliance Audit Report - ISO 27001</h5>
+                                <p class="text-muted">Generated on April 15, 2025 by Compliance Officer</p>
+                                <p>Results of the quarterly compliance audit against ISO 27001 standards. The organization is 92% compliant with all required controls. Areas requiring improvement include document management procedures and access control reviews.</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-sm btn-dark me-2"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                            
+                            <div class="report-item">
+                                <h5>Security Awareness Training Results</h5>
+                                <p class="text-muted">Generated on April 10, 2025 by Training Coordinator</p>
+                                <p>Analysis of the organization-wide security awareness training conducted in March 2025. 94% of employees successfully completed the training with an average score of 87%. Phishing simulation success rate dropped by 23% compared to previous quarter.</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-sm btn-dark me-2"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Section -->
+        <div id="messagesSection" class="messages-section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-comment-alt"></i> Internal Messages</h5>
+                            <button class="btn btn-sm btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#composeMessageModal">
+                                <i class="fas fa-paper-plane"></i> Compose
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="messagesContainer">
+                                <!-- Messages will be loaded here - XSS vulnerability exists -->
+                            </div>
+                            
+                            <div class="mt-3">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="authorInput" class="form-control" placeholder="Author name">
+                                    <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#composeMessageModal">
+                                        <i class="fas fa-paper-plane"></i> Compose
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settingsSection" class="settings-section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-info mb-4">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4 class="text-center" id="profileUsername">Admin</h4>
+                        <p class="text-center text-muted" id="profileEmail">admin@secops.example</p>
+                        <hr style="border-color: var(--accent-grey);">
+                        <div class="mb-2">
+                            <strong>Role:</strong> <span id="profileRole">System Administrator</span>
+                        </div>
+                        <div class="mb-2">
+                            <strong>Department:</strong> <span>Security Operations</span>
+                        </div>
+                        <div class="mb-2">
+                            <strong>Member Since:</strong> <span>January 15, 2023</span>
+                        </div>
+                        <div class="mb-2">
+                            <strong>Last Login:</strong> <span>Today at 08:23 AM</span>
+                        </div>
+                        <div class="mb-2">
+                            <strong>Time Zone:</strong> <span>Eastern Standard Time</span>
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-danger" id="logoutBtnSettings">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compose Message Modal -->
+    <div class="modal fade" id="composeMessageModal" tabindex="-1" aria-labelledby="composeMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="composeMessageModalLabel">Compose Message</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="messageInput" class="form-label">Message</label>
+                        <textarea id="messageInput" class="form-control bg-dark text-light" rows="5" placeholder="Enter your message here..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="sendMessage" data-bs-dismiss="modal">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/javascript/main.js"></script>
+</body>
+</html>
