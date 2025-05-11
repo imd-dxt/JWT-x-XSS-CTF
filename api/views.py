@@ -9,17 +9,15 @@ from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from django.shortcuts import render
-from django.contrib.auth import get_user_model
+
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import UserRegistrationSerializer, UserSerializer, FileUploadSerializer
 from .models import FileUpload
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
 def get_tokens_for_user(user):
    
@@ -108,9 +106,7 @@ class UserProfileView(APIView):
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
 def admin_messages(request):
-    # Pas de vérification de rôle ici pour maintenir la vulnérabilité JWT
     
-    # Chemin pour stocker les messages
     messages_file = os.path.join(settings.BASE_DIR, 'admin_messages.json')
     
     # Initialiser les messages par défaut
@@ -135,11 +131,11 @@ def admin_messages(request):
             message = data.get('message', '')
             author = data.get('author', 'User')
             
-            # Ajouter le nouveau message
+            
             if not '<img' in message.lower() and not 'onerror' in message.lower() and not '<script' in message.lower():
                 stored_messages.append({"author": author, "content": message})
             
-            # Limiter le nombre de messages stockés
+            
             if len(stored_messages) > 20:
                 stored_messages = stored_messages[-20:]
             
@@ -147,12 +143,10 @@ def admin_messages(request):
             with open(messages_file, 'w') as f:
                 json.dump(stored_messages, f)
             
-            # MODIFIED: Simplified XSS detection to make basic image payload work
-            # Flag for any XSS attempt including the simple img onerror payload
             if '<img' in message.lower() and 'onerror' in message.lower():
                 return JsonResponse({
                     "messages": stored_messages,
-                    "secretFlag": "CTF{XSS_JWT_M4ST3R_H4CK3R}"
+                    "secretFlag": "NCD6{D3XT3R_IS_IM4D_hh}"
                 })
             
             return JsonResponse({"messages": stored_messages})

@@ -12,7 +12,6 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
 def user_directory_path(instance, filename):
-    # Files will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return f'user_{instance.user.id}/{filename}'
 
 class FileUpload(models.Model):

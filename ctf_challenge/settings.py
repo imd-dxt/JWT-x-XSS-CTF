@@ -125,3 +125,7 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = 'api.User'
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
+try:
+    from .local_settings import *
+except ImportError:
+    pass
