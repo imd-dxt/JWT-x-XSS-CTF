@@ -146,7 +146,7 @@ def admin_messages(request):
             if '<img' in message.lower() and 'onerror' in message.lower():
                 return JsonResponse({
                     "messages": stored_messages,
-                    "secretFlag": "NCD6{D3XT3R_IS_IM4D_hh}"
+                    "secretFlag": "NCD6{D3XT3R_IS_H1M.EXE_hh}"
                 })
             
             return JsonResponse({"messages": stored_messages})
