@@ -1,7 +1,9 @@
 # .gitleaksignore
 [allowlist]
+  description = "Gitleaks false positives"
   paths = [
     "sonar-project.properties",
     ".venv-devsecops/",
     ".venv/"
+  
   ]
