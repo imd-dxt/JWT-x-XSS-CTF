@@ -32,4 +32,12 @@ Thumbs.db
 # Reports
 reports/
 trivy-results.sarif
-"@ | Out-File -FilePath .gitignore -Encoding utf8
+"@ | Out-File -FilePath .gitignore -Encoding utf8git add .gitignore
+git add Dockerfile
+git add .pre-commit-config.yaml
+git add .gitleaksignore
+git add sonar-project.properties
+git add .github/
+git add infra/
+git add app/
+git add docs/
