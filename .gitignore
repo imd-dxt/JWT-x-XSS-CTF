@@ -1,0 +1,35 @@
+# Étape 3 — Créer le .gitignore propre
+@"
+# Python envs
+.venv/
+.venv-devsecops/
+venv/
+*.pyc
+__pycache__/
+pyvenv.cfg
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+*.tfvars
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Reports
+reports/
+trivy-results.sarif
+"@ | Out-File -FilePath .gitignore -Encoding utf8

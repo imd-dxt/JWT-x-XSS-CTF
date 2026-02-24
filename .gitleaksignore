@@ -1,0 +1,7 @@
+# .gitleaksignore
+[allowlist]
+  paths = [
+    "sonar-project.properties",
+    ".venv-devsecops/",
+    ".venv/"
+  ]

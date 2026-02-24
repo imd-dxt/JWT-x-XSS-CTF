@@ -1,0 +1,6 @@
+repos:
+  # Gitleaks — détecte les secrets avant le commit
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks

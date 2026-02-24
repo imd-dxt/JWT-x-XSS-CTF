@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+    command: >
+      sh -c "mkdir -p /app/static /app/media &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
